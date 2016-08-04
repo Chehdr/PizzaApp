@@ -1,0 +1,38 @@
+<template name="GroupList">
+    <div class="row">
+      {{#with GroupInfo}}
+        <div class="col-sm-2"><img class="img-thumbnail" src="{{image}}" width="150" height="150"></div>
+        <div class="col-sm-8">
+          <p>Name: {{name}}</p>
+          <p>Create data: {{dateCreate}}</p>
+          <p>Admin: {{AdminGroupName}}</p>
+        </div>
+      {{/with}}
+    </div>
+    <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        {{#if isInRole 'admin'}}
+          <th>Remove User from Group</th>
+        {{/if}}
+      </tr>
+    </thead>
+    <tbody>
+    {{#each UsersInGroup}}
+      <tr>
+        <td>{{profile.[first-name]}}</td>
+        <td>{{profile.[last-name]}}</td>
+        <td>{{emails.[0].address}}</td>
+        {{#if isInRole 'admin'}}
+        <td><button type="button" id="RemoveUserFromGroupID" class="btn btn-default btn-xs">Remove</button></td>
+        {{/if}}
+      </tr>
+    {{/each}}
+
+    </tbody>
+  </table>
+
+</template>

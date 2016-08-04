@@ -1,0 +1,45 @@
+<template name="Event">
+  <div class="col-sm-4">
+    <label for="CountCoupon">Name Event:</label>
+     <input class="form-control" id="NameNewEvent" type="text" placeholder="Name">
+  </div>
+  <div class="col-sm-2">
+    <label for="CreateEventID">Create</label>
+    <button type="button" id="CreateEventID" class="btn btn-default btn-sm">Create Event</button>
+  </div>
+
+      <table class="table table-hover" id="TableForMenu">
+    <thead>
+      <tr>
+        <th>Event Name</th>
+        <th>Status</th>
+        <th>Orders</th>
+        <th>Remove (admin)</th>
+        <th>Status Change (admin)</th>
+      </tr>
+    </thead>
+
+    <tbody id="MenuTableID">
+    {{#if GroupInfo.events.[0]}}
+      {{#each GroupInfo.events}}
+        <tr>
+          <td>{{eventName}}</td>
+          <td>{{status}}</td>
+          {{#if UserInEvent}}
+            <td><button type="button" id="AddOrderToEventID" name="{{eventName}}" idGroup="{{GroupInfo._id}}" class="btn btn-default btn-xs">Order</button></td>
+            {{#if UserIsAdminEvent}}
+              <td><button type="button" id="RemoveEventID" name="{{eventName}}" class="btn btn-default btn-xs">Remove</button></td>
+              <td><button type="button" id="StatusEventID" status="{{status}}" idGroup="{{GroupInfo._id}}" class="btn btn-default btn-xs">Next Status</button></td>
+            {{else}}
+              <td>For admin</td>
+              <td>For admin</td>
+            {{/if}}
+          {{else}}
+            <td><button type="button" id="JoinToEventID" idGroup="{{GroupInfo._id}}" class="btn btn-default btn-xs">Join to Event</button></td>
+          {{/if}}
+        </tr> 
+        {{/each}}
+      {{/if}}   
+    </tbody>
+  </table> 
+</template>

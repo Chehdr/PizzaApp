@@ -1,0 +1,13 @@
+{
+  "name": "SimpleApp",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "meteor-node-stubs": "~0.2.0",
+    "react": "^0.14.0-rc1",
+    "react-dom": "^0.14.0-rc1",
+    "react-html-email": "^1.1.1"
+  }
+}

@@ -1,0 +1,42 @@
+<template name="Coupons">
+  <div class="col-sm-8">
+    <label for="CouponItemID">Select Item for Coupon (select one):</label>
+      <select class="form-control" id="CouponItemID">
+         <option value="default" selected="selected">Select Item</option>
+         {{#if Menu.menu.[0]}}
+            {{#each Menu.menu}}
+              <option value='{{name}}'>{{name}}</option>
+            {{/each}}
+          {{/if}}
+      </select>
+  </div>
+  <div class="col-sm-2">
+    <label for="CountCoupon">Enter count:</label>
+     <input class="form-control" id="CountCoupon" type="text" value="1">
+  </div>
+  <div class="col-sm-2">
+    <label for="AddCouponID">Add</label>
+    <button type="button" id="AddCouponID" class="btn btn-default btn-sm">Add Coupon</button>
+  </div>
+
+    <table class="table table-hover" id="TableForMenu">
+    <thead>
+      <tr>
+        <th>Name Item</th>
+        <th>Count</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+    <tbody id="MenuTableID">
+    {{#if Coupon.coupons}}
+      {{#each Coupon.coupons}}
+        <tr>
+          <td>{{name}}</td>
+          <td>{{count}}</td>
+          <td><button type="button" id="RemoveCouponID" name="{{name}}" class="btn btn-default btn-xs">Remove</button></td>
+        </tr> 
+         {{/each}}
+      {{/if}}  
+    </tbody>
+  </table> 
+</template>

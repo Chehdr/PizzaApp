@@ -1,0 +1,27 @@
+<template name="Menu"> 
+  <form>
+  <table class="table table-hover" id="TableForMenu">
+    <thead>
+       
+      <tr>
+        <th>Name Item</th>
+        <th>Price, $</th>
+      </tr>
+
+    </thead>
+    <tbody id="MenuTableID">
+    {{#if MenuItems.menu.[0]}}
+      {{#each MenuItems.menu}}
+        <tr>
+          <td><input type="text" class="form-control" id="field1" value="{{name}}"></td>
+          <td><div class="col-xs-3"><input class="form-control" id="field2" type="text" value="{{price}}"></div></td>
+        </tr> 
+         {{/each}}
+      {{/if}}  
+    </tbody>
+  </table> 
+    <button type="button" id="AddItemID" class="btn btn-default btn-sm">+ Add Item</button>
+    <button type="button" id="DeleteItemID" class="btn btn-default btn-sm">- Delete Item</button>
+    <button type="submit" class="btn btn-default btn-sm">Save Menu</button>
+  </form>         
+</template>

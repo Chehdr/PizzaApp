@@ -1,0 +1,26 @@
+<template name="InvatesToGroup">
+    <h2>Join to group here</h2>
+  <p>Accept invites and join to grop</p>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Image Group</th>
+        <th>Name Group</th>
+        <th>Admin Group</th>
+        <th>Accept</th>
+        <th>Decline</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#each UserInvites}}
+      <tr>
+        <td><img width="21" height="21" src="{{image}}"></td>
+        <td>{{name}}</td>
+        <td>{{AdminGroupName}}</td>
+        <td><button type="button" id="AcceptInviteToGroupID" class="btn btn-default btn-xs">Accept</button></td>
+        <td><button type="button" id="DeclineInviteToGroupID" class="btn btn-default btn-xs">Decline</button></td>
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
+</template>
