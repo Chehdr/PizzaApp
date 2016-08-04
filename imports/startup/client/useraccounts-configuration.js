@@ -36,7 +36,7 @@ Accounts.ui.config({
             value: 'f',
             checked: 'checked'
         }],
-        visible: true
+        visible: false
     }, {
         fieldName: 'country',
         fieldLabel: 'Country',
@@ -57,7 +57,7 @@ Accounts.ui.config({
         fieldName: 'terms',
         fieldLabel: 'I accept the terms and conditions',
         inputType: 'checkbox',
-        visible: false,
+        visible: true,
         saveToProfile: false,
         validate: function(value, errorFunction) {
             if (value) {
