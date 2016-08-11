@@ -1,0 +1,58 @@
+  <center><h2>Pizza Day check!</h2></center>
+  <center><p>Thenks for using Pizza Day App</p></center>
+  <br>
+  <table border="0" cellspacing="0" cellpadding="0" align="center" style="width:600px;margin:0 auto;background:#FFF;line-height: 30px;">
+    <thead>
+      <tr>
+        <th>Item name</th>
+        <th>Count</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#each orders.order}}
+      <tr>
+        <td>{{name}}</td>
+        <td>{{count}}</td>
+        <td>{{price}}</td>
+      </tr>
+    {{/each}}
+      <tr>
+        <th>To pay:</th>
+        <td>{{orders.summ}}</td>
+      </tr>
+      <tr>
+        <th>Total:</th>
+        <td>{{totalsumm}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+{{#if orders.totalorders}}
+  <center><p>All orders</p></center>
+  <br>
+  <table border="0" cellspacing="0" cellpadding="0" align="center" style="width:600px;margin:0 auto;background:#FFF;line-height: 30px;">
+    <thead>
+      <tr>
+        <th>Item name</th>
+        <th>Count</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#each orders.totalorders}}
+      <tr>
+        <td>{{name}}</td>
+        <td>{{totalqty}}</td>
+        <td>{{price}}</td>
+      </tr>
+    {{/each}}
+      <tr>
+        <th>Total:</th>
+        <td>{{totalsumm}}</td>
+      </tr>
+    </tbody>
+  </table>
+{{/if}}
+  <br>
+  <br>

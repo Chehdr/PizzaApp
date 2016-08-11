@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
+import fs from 'fs';
+import path from 'path';
 
-let fs = Npm.require('fs');
-let path = Npm.require('path');
 let MeteorRoot = fs.realpathSync(__meteor_bootstrap__.serverDir + '/../' );
 let ApplicationRoot = fs.realpathSync( MeteorRoot + '/../../../../' );
 

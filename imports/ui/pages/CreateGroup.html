@@ -9,7 +9,11 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="pwd">Group Image:</label>
       <div class="col-sm-10" id="ImagePlace">
-        {{> upload_bootstrap callbacks=AfterLoad}}
+        {{#if ImageGroup}}
+            {{> LoadImage url = ImageGroup}}
+          {{else}}
+            {{> upload_bootstrap callbacks = AfterLoad}}
+        {{/if}}
       </div>
     </div>
     <div class="form-group">
@@ -18,4 +22,8 @@
       </div>
     </div>
   </form>
+</template>
+
+<template name="LoadImage">
+  <img class="img-thumbnail" width="150" height="150" src="{{this.url}}">
 </template>

@@ -1,25 +1,23 @@
+import { Meteor } from 'meteor/meteor';
+import { Template } from 'meteor/templating';
+
 import './Menu.html';
 import '../../api/groups/groups.js';
 
 Template.Menu.helpers({
 	MenuItems: function(){
-        Meteor.subscribe('GroupsInfo');
+        Meteor.subscribe('Groups');
         if(Roles.userIsInRole(Meteor.userId(), 'admin')){
-            return GroupsInfo.findOne({'AdminGroup': Meteor.userId()});
+            return Groups.findOne({'AdminGroup': Meteor.userId()});
         }else{
-            return GroupsInfo.findOne( { 'users': { $in: [Meteor.userId() ] } } )
+            return Groups.findOne( { 'users': { $in: [Meteor.userId() ] } } )
         }        
     }
 });
 
 Template.Menu.events({
 	'click #AddItemID' : function(e, i){
-    	let row = TableForMenu.insertRow(-1);
-    	row.className = 'NeedDelete';
-    	let cell1 = row.insertCell(0);
-    	let cell2 = row.insertCell(0);
-    	cell1.innerHTML = "<div class=\"col-xs-3\"><input class=\"form-control \" id=\"field2\" type=\"text\"></div>"; 
-    	cell2.innerHTML = "<input type=\"text\" class=\"form-control\" id=\"field1\">";
+      Blaze.render(Template.AddRow, MenuTableID);
   	},
   	'click #DeleteItemID' : function(e, i){
     	TableForMenu.deleteRow(-1);
@@ -37,10 +35,9 @@ Template.Menu.events({
       		}
     	}
     	Meteor.call('GroupMenu', menu);
-    	if($('.NeedDelete').length !== 0){
-      		while( $('.NeedDelete').length > 0) {
-        		$('.NeedDelete')[0].remove();
-      		}
-    	}
+      let DeleteColumn = document.getElementsByClassName('NeedDelete');
+        for (i in DeleteColumn) {
+           DeleteColumn[0].outerHTML = '';
+        }
   	}
 });

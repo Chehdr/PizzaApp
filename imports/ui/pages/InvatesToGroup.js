@@ -1,11 +1,15 @@
+import { Meteor } from 'meteor/meteor';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import { Template } from 'meteor/templating';
+
 import './InvatesToGroup.html';
 import '../../api/groups/groups.js';
 
 
 Template.InvatesToGroup.helpers({
 	UserInvites: function(){
-        Meteor.subscribe('GroupsInfo');
-        return GroupsInfo.find({invite:{'userId': Meteor.userId()}});  
+        Meteor.subscribe('Groups');
+        return Groups.find({invite:{'userId': Meteor.userId()}});  
     }
 });
 

@@ -30,43 +30,25 @@
       <div class="panel panel-default">
         <div class="panel-heading">Action with groups</div>          
           {{#if isInRole 'admin'}}
-          <div class="panel-body">
-            <a href="SendInviteToGroup" class="btn btn-primary btn-block" role="button">Send Invite</a>
-          </div>
-          <div class="panel-body">
-            <a href="GroupList" class="btn btn-primary btn-block" role="button">Group List</a>
-          </div>
-
-          <div class="panel-footer">
-            <button type="button" id="deleteGroupID" class="btn btn-danger btn-block">Delete Group</button>
-          </div>
-
+            {{> AdminLeftPanel}}
           {{else}}
-            {{#if isInRole 'custumer'}}
-          <div class="panel-footer">
-            <button type="button" id="LeaveGroupID" class="btn btn-danger btn-block">Leave Group</button>
-          </div>
-                {{else}}
-                <div class="panel-body">
-                  <a href="InvatesToGroup" class="btn btn-primary btn-block" role="button">Invites</a>
-                </div>
-
-                <div class="panel-footer">
-                  <a href="CreateGroup" class="btn btn-success btn-block" role="button">Create Group</a>
-                </div>
-                {{/if}}
+            {{#if isInRole 'user'}}
+              <div class="panel-footer">
+                <button type="button" id="LeaveGroupID" class="btn btn-danger btn-block">Leave Group</button>
+              </div>
+            {{else}}
+              {{> UserLeftPanel}}
+            {{/if}}
           {{/if}}
       </div>
     </div>
     <div class="col-sm-8">
-
       {{> Template.dynamic template=main}}
-      
     </div>
     <div class="col-sm-2">
       <div class="panel panel-default">
         <div class="panel-heading">Action with menu</div>
-        {{#if isInRole 'admin, custumer'}}
+        {{#if isInRole 'admin, user'}}
           <div class="panel-body">
              <a href="Menu" class="btn btn-primary btn-block" role="button">Menu</a>
           </div>
@@ -84,13 +66,12 @@
               <div class="text-center">
                 <h5>
                   <strong>Info!</strong>
-                <p>You mast join/create group!</p>
+                <p>You must join/create group!</p>
                 </h5>
               </div>
             </div>
           </div>
         {{/if}}
-
       </div>
     </div>
   </div>
@@ -98,17 +79,36 @@
     <div class="text-center" id="warningErrorPlaceID"></div>
   </div>
 </div>
-
 {{else}}
 <div class="text-center">
-  <h1>To us this app need sig-in or Join</h1>
+  <h1>To use this app need sign-in or Join</h1>
 </div>
-  
 {{/if}}
-
 <footer class="navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <span>Created by Farice</span>
   </div>
 </footer>
+</template>
+
+
+<template name="AdminLeftPanel">
+  <div class="panel-body">
+    <a href="SendInviteToGroup" class="btn btn-primary btn-block" role="button">Send Invite</a>
+  </div>
+  <div class="panel-body">
+    <a href="GroupList" class="btn btn-primary btn-block" role="button">Group List</a>
+  </div>
+  <div class="panel-footer">
+    <button type="button" id="deleteGroupID" class="btn btn-danger btn-block">Delete Group</button>
+  </div>
+</template>
+
+<template name="UserLeftPanel">
+  <div class="panel-body">
+    <a href="InvatesToGroup" class="btn btn-primary btn-block" role="button">Invites</a>
+  </div>
+  <div class="panel-footer">
+    <a href="CreateGroup" class="btn btn-success btn-block" role="button">Create Group</a>
+  </div>
 </template>

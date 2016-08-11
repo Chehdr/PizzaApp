@@ -1,6 +1,10 @@
+import { Meteor } from 'meteor/meteor';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import { Template } from 'meteor/templating';
+
 import './AddItemsToOrder.html';
 import '../../api/groups/groups.js';
-import '../../api/orders/methods.js';
+import '../../api/orders/orders.js';
 
 Template.AddItemsToOrder.events({
     'submit form' : function(e, i){
@@ -12,13 +16,13 @@ Template.AddItemsToOrder.events({
               order.order.push({
                 'name': e.target[i].value, 
                 'count': parseInt(e.target[i+1].value), 
-                  'price': parseFloat(e.target[i].attributes.price.value)
+                'price': parseFloat(e.target[i].attributes.price.value)
                 });
             }
           }
       }
       if(order.order.length > 0){
-          Meteor.call('AddOrderToEvent', Session.get('IdGroup'), Session.get('EventName'), order);
+          Meteor.call('AddOrderToEvent', Session.get('IdGroup'), Session.get('IdEvent'), order);
           FlowRouter.go('Event');
       }else{
           Meteor.Errors.alertError('OrderError'); 
@@ -26,30 +30,26 @@ Template.AddItemsToOrder.events({
   }
 });
 
+Template.AddItemsToOrder.onCreated(function () {
+  Meteor.subscribe('Groups');
+  Meteor.subscribe('Orders');
+});
+
 Template.AddItemsToOrder.helpers({
   Order: function(){
-    Meteor.subscribe('GroupsInfo');
-    let order = GroupsInfo.findOne({'_id': Session.get('IdGroup')});
-    Session.set('Order', order);
-    return order
+     return Groups.findOne({'_id': Session.get('IdGroup')});
 
   },
   ifOrdered: function(){
-    Meteor.subscribe('GroupsInfo');
-    var group = Session.get('Order');
-    if (group){
-      for (let i = 0; i < group.events.length; i++) {
-          if(group.events[i].eventName == Session.get('EventName')){
-            for (let j = 0; j < group.events[i].orders.length; j++) {
-                if(group.events[i].orders[j].userId == Meteor.userId()){
-                  return false
-                }
-            }
-          }
-        }      
+    let ordered = Orders.findOne({ $and: [{"EventId" : Session.get('IdEvent')}, {"userId" : Meteor.userId()}]});
+    if (Session.get('IdEvent')){
+      if (ordered){
+        return false
+      }else{
+        return true
+      }
     }else{
       FlowRouter.go('Event');
     }
-      return true
-    }
+  }
 });

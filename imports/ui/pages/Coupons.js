@@ -1,24 +1,27 @@
+import { Meteor } from 'meteor/meteor';
+import { Template } from 'meteor/templating';
+
 import './Coupons.html';
 import '../../api/groups/groups.js';
 
 Template.Coupons.helpers({
 	Menu: function(){
-		Meteor.subscribe('GroupsInfo');
+		Meteor.subscribe('Groups');
         if(Roles.userIsInRole(Meteor.userId(), 'admin')){
-            return GroupsInfo.findOne({'AdminGroup': Meteor.userId()});
+            return Groups.findOne({'AdminGroup': Meteor.userId()});
         }else{
-            return GroupsInfo.findOne( { 'users': { $in: [Meteor.userId() ] } } )
+            return Groups.findOne( { 'users': { $in: [Meteor.userId() ] } } )
         }
 	},
 	Coupon: function(){
-    	Meteor.subscribe('GroupsInfo');
-      	return GroupsInfo.findOne({'AdminGroup': Meteor.userId()});
+    	Meteor.subscribe('Groups');
+      	return Groups.findOne({'AdminGroup': Meteor.userId()});
   	}
 });
 
 Template.Coupons.events({
 	'click #AddCouponID' : function(e, i){
-    	if(CouponItemID.value !== 'default' && CountCoupon.value !== '0' && !GroupsInfo.findOne({ 'coupons': { $elemMatch: { 'name': CouponItemID.value } } } )){
+    	if(CouponItemID.value !== 'default' && CountCoupon.value !== '0' && !Groups.findOne({ 'coupons': { $elemMatch: { 'name': CouponItemID.value } } } )){
       		Meteor.call('CreateCoupon', CouponItemID.value, parseInt(CountCoupon.value));
      	}else{
       		Meteor.Errors.alertError('CouponError');

@@ -29,3 +29,5 @@ email
 check
 kadira:flow-router
 kadira:blaze-layout
+cmather:handlebars-server
+meteorhacks:aggregate

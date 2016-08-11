@@ -1,16 +1,19 @@
+import { Meteor } from 'meteor/meteor';
+import { Template } from 'meteor/templating';
+
 import './GroupList.html';
 import '../../api/groups/groups.js';
 
 Template.GroupList.helpers({
 	GroupInfo:function(){
-        Meteor.subscribe('GroupsInfo');
-        return GroupsInfo.findOne({AdminGroup: Meteor.userId()});   
+        Meteor.subscribe('Groups');
+        return Groups.findOne({AdminGroup: Meteor.userId()});   
 	},
 
   	UsersInGroup: function(){
-   		Meteor.subscribe('GroupsInfo');
+   		Meteor.subscribe('Groups');
     	Meteor.subscribe('AllUsers');
-    	let users =  GroupsInfo.findOne({AdminGroup: Meteor.userId()});
+    	let users =  Groups.findOne({AdminGroup: Meteor.userId()});
     	if(users){
       		return Meteor.users.find( { _id : { $in : users.users} } );
     	}

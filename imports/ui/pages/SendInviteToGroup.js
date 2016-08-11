@@ -1,3 +1,6 @@
+import { Meteor } from 'meteor/meteor';
+import { Template } from 'meteor/templating';
+
 import './SendInviteToGroup.html';
 import '../../api/groups/groups.js';
 
@@ -10,9 +13,9 @@ Template.SendInviteToGroup.events({
 
 Template.SendInviteToGroup.helpers({
 	InviteToUser: function(){
-        Meteor.subscribe('GroupsInfo');
+        Meteor.subscribe('Groups');
         Meteor.subscribe('AllUsers');
-        let users = GroupsInfo.findOne({AdminGroup: Meteor.userId()}, {fields:{'invite':1}});
+        let users = Groups.findOne({AdminGroup: Meteor.userId()}, {fields:{'invite':1}});
         let sended = [];
         if(users){
             sended = _.pluck(users.invite, 'userId').concat(Meteor.userId());
@@ -23,7 +26,7 @@ Template.SendInviteToGroup.helpers({
 	},
 
 	UserInGroup: function(){
-    	if(Roles.userIsInRole(this._id, 'admin') || Roles.userIsInRole(this._id, 'custumer')){
+    	if(Roles.userIsInRole(this._id, 'admin') || Roles.userIsInRole(this._id, 'user')){
       		return false
    		}else{
       		return true
