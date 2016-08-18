@@ -1,71 +1,71 @@
 import { Accounts } from 'meteor/accounts-base';
 
 Accounts.ui.config({
-    requestPermissions: {},
-    extraSignupFields: [{
-        fieldName: 'first-name',
-        fieldLabel: 'First name',
-        inputType: 'text',
-        visible: true,
-        validate: function(value, errorFunction) {
-          if (!value) {
-            errorFunction("Please write your first name");
-            return false;
-          } else {
-            return true;
-          }
-        }
+  requestPermissions: {},
+  extraSignupFields: [{
+    fieldName: 'first-name',
+    fieldLabel: 'First name',
+    inputType: 'text',
+    visible: true,
+    validate: function(value, errorFunction) {
+      if (!value) {
+        errorFunction("Please write your first name");
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }, {
+    fieldName: 'last-name',
+    fieldLabel: 'Last name',
+    inputType: 'text',
+    visible: true,
+  }, {
+    fieldName: 'gender',
+    showFieldLabel: false,     
+    fieldLabel: 'Gender',
+    inputType: 'radio',
+    radioLayout: 'vertical',   
+    data: [{                   
+  		id: 1,                
+      label: 'Male',        
+      value: 'm'           
     }, {
-        fieldName: 'last-name',
-        fieldLabel: 'Last name',
-        inputType: 'text',
-        visible: true,
+      id: 2,
+      label: 'Female',
+      value: 'f',
+      checked: 'checked'
+    }],
+      visible: false
     }, {
-        fieldName: 'gender',
-        showFieldLabel: false,     
-        fieldLabel: 'Gender',
-        inputType: 'radio',
-        radioLayout: 'vertical',   
-        data: [{                   
-    		id: 1,                
-            label: 'Male',        
-            value: 'm'           
-          }, {
-            id: 2,
-            label: 'Female',
-            value: 'f',
-            checked: 'checked'
-        }],
-        visible: false
+    fieldName: 'country',
+    fieldLabel: 'Country',
+    inputType: 'select',
+    showFieldLabel: true,
+    empty: 'Please select your country of residence',
+    data: [{
+      id: 1,
+      label: 'United States',
+      value: 'us'
     }, {
-        fieldName: 'country',
-        fieldLabel: 'Country',
-        inputType: 'select',
-        showFieldLabel: true,
-        empty: 'Please select your country of residence',
-        data: [{
-            id: 1,
-            label: 'United States',
-            value: 'us'
-          }, {
-            id: 2,
-            label: 'Spain',
-            value: 'es',
-        }],
-        visible: false
+      id: 2,
+      label: 'Spain',
+      value: 'es',
+    }],
+    visible: false
     }, {
-        fieldName: 'terms',
-        fieldLabel: 'I accept the terms and conditions',
-        inputType: 'checkbox',
-        visible: true,
-        saveToProfile: false,
-        validate: function(value, errorFunction) {
-            if (value) {
-                return true;
-            } else {
-                errorFunction('You must accept the terms and conditions.');
-                return false;
-            }
-        }
-    }]
+    fieldName: 'terms',
+    fieldLabel: 'I accept the terms and conditions',
+    inputType: 'checkbox',
+    visible: true,
+    saveToProfile: false,
+    validate: function(value, errorFunction) {
+      if (value) {
+        return true;
+      } else {
+        errorFunction('You must accept the terms and conditions.');
+        return false;
+      }
+    }
+  }]
 });

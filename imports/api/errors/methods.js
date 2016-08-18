@@ -1,18 +1,15 @@
-import { Mongo } from 'meteor/mongo';
-import '../../ui/pages/Error.js';
+import { Meteor } from 'meteor/meteor';
 
 Meteor.Errors = {
-	alertError: function(name){
-		let error;
-		switch(name){
-			case 'groupError' : error = 'Please, enter name and select image!'; break;
-        	case 'MenuError' : error = 'Please, enter Name and Price!'; break;
-        	case 'CouponError' : error = 'Please, select Item and enter count! Available only one type of coupon.'; break;
-        	case 'EventError' : error = 'Please, enter event name!'; break;
-        	case 'OrderError' : error = 'Please, enter Item and Count!'; break;
-		}
-		if(!$('#alertWarningID')[0]){
-			Blaze.renderWithData(Template.Error, error, warningErrorPlaceID);
-		}
-	}
+  alertError: function(name){
+    let error;
+    switch(name){
+      case 'groupError' : error = 'Name and Image mast be entry!'; break;
+      case 'MenuError' : error = 'Name and Price mast be entry!'; break;
+      case 'CouponError' : error = 'Item and count must be selected! Available only one type coupon.'; break;
+      case 'EventError' : error = 'Name must be entry!'; break;
+      case 'OrderError' : error = 'Select Item and entry count!'; break;
+    }
+    swal("Error!", error, "error");
+  }
 };

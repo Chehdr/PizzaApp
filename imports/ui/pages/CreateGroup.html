@@ -10,9 +10,9 @@
       <label class="control-label col-sm-2" for="pwd">Group Image:</label>
       <div class="col-sm-10" id="ImagePlace">
         {{#if ImageGroup}}
-            {{> LoadImage url = ImageGroup}}
-          {{else}}
-            {{> upload_bootstrap callbacks = AfterLoad}}
+          {{> LoadImage url = ImageGroup}}
+        {{else}}
+          {{> upload_bootstrap callbacks = AfterLoad}}
         {{/if}}
       </div>
     </div>

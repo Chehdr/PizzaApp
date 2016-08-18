@@ -2,12 +2,12 @@
   <div class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Pizza Day</a>
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-          </button>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -18,77 +18,76 @@
       </ul>
     </div>
   </div>
-<div class="jumbotron text-center">
-  <h1>Pizza Day</h1>
-  <p>Application for Pizza</p> 
-</div>
-
-{{#if currentUser}}
-<div class="container">
-  <div class="row">
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-heading">Action with groups</div>          
-          {{#if isInRole 'admin'}}
-            {{> AdminLeftPanel}}
-          {{else}}
-            {{#if isInRole 'user'}}
+  <div class="jumbotron text-center">
+    <h1>Pizza Day</h1>
+    <p>Application for Pizza</p> 
+  </div>
+  {{#if currentUser}}
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">Action with groups</div>          
+              {{#if isInRole 'admin'}}
+                {{> AdminLeftPanel}}
+              {{else}}
+                {{#if isInRole 'user'}}
+                  <div class="panel-footer">
+                    <button type="button" id="LeaveGroupID" class="btn btn-danger btn-block">Leave Group</button>
+                  </div>
+                {{else}}
+                  {{> UserLeftPanel}}
+                {{/if}}
+              {{/if}}
+          </div>
+        </div>
+        <div class="col-sm-8">
+          {{> Template.dynamic template=main}}
+        </div>
+        <div class="col-sm-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">Action with menu</div>
+            {{#if isInRole 'admin, user'}}
+              <div class="panel-body">
+                <a href="Menu" class="btn btn-primary btn-block" role="button">Menu</a>
+              </div>
+              {{#if isInRole 'admin'}}
+                <div class="panel-body">
+                <a href="Coupons" class="btn btn-primary btn-block" role="button">Coupons</a>
+                </div>
+              {{/if}}
               <div class="panel-footer">
-                <button type="button" id="LeaveGroupID" class="btn btn-danger btn-block">Leave Group</button>
+                <a href="Event" class="btn btn-success btn-block" role="button">Event</a>
               </div>
             {{else}}
-              {{> UserLeftPanel}}
-            {{/if}}
-          {{/if}}
-      </div>
-    </div>
-    <div class="col-sm-8">
-      {{> Template.dynamic template=main}}
-    </div>
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-heading">Action with menu</div>
-        {{#if isInRole 'admin, user'}}
-          <div class="panel-body">
-             <a href="Menu" class="btn btn-primary btn-block" role="button">Menu</a>
-          </div>
-          {{#if isInRole 'admin'}}
-          <div class="panel-body">
-            <a href="Coupons" class="btn btn-primary btn-block" role="button">Coupons</a>
-          </div>
-          {{/if}}
-          <div class="panel-footer">
-            <a href="Event" class="btn btn-success btn-block" role="button">Event</a>
-          </div>
-        {{else}}
-          <div class="panel-body">
-            <div class="alert alert-info">
-              <div class="text-center">
-                <h5>
-                  <strong>Info!</strong>
-                <p>You must join/create group!</p>
-                </h5>
+              <div class="panel-body">
+                <div class="alert alert-info">
+                  <div class="text-center">
+                    <h5>
+                      <strong>Info!</strong>
+                      <p>You must join/create group!</p>
+                    </h5>
+                  </div>
+                </div>
               </div>
-            </div>
+            {{/if}}
           </div>
-        {{/if}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="text-center" id="warningErrorPlaceID"></div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="text-center" id="warningErrorPlaceID"></div>
-  </div>
-</div>
-{{else}}
-<div class="text-center">
-  <h1>To use this app need sign-in or Join</h1>
-</div>
-{{/if}}
-<footer class="navbar-default navbar-fixed-bottom">
-  <div class="container-fluid">
-    <span>Created by Farice</span>
-  </div>
-</footer>
+  {{else}}
+    <div class="text-center">
+      <h1>To use this app need sign-in or Join</h1>
+    </div>
+  {{/if}}
+  <footer class="navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+      <span>Created by Farice</span>
+    </div>
+  </footer>
 </template>
 
 

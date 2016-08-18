@@ -12,20 +12,19 @@
       </tr>
     </thead>
     <tbody>
-    {{#each InviteToUser}}
-      <tr>
-        <td>{{profile.[first-name]}}</td>
-        <td>{{profile.[last-name]}}</td>
-        <td>{{emails.[0].address}}</td>
-        <td>{{roles.[0]}}</td>
-        {{#if UserInGroup role = roles.[0]}}
-        <td><button type="button" class="btn btn-default btn-xs">Send Invite</button></td>
-        {{else}}
-        <td>User in Group</td>
-        {{/if}}
-      </tr>
-    {{/each}}
-
+      {{#each InviteToUser}}
+        <tr>
+          <td>{{profile.[first-name]}}</td>
+          <td>{{profile.[last-name]}}</td>
+          <td>{{emails.[0].address}}</td>
+          <td>{{roles.[0]}}</td>
+          {{#if UserInGroup role = roles.[0]}}
+            <td><button type="button" class="btn btn-default btn-xs">Send Invite</button></td>
+          {{else}}
+            <td>User in Group</td>
+          {{/if}}
+        </tr>
+      {{/each}}
     </tbody>
   </table>
-  </template>
+</template>

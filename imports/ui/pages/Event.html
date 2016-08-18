@@ -7,39 +7,39 @@
     <label for="CreateEventID">Create</label>
     <button type="button" id="CreateEventID" idGroup="{{GroupId._id}}" class="btn btn-default btn-sm">Create Event</button>
   </div>
-
-      <table class="table table-hover" id="TableForMenu">
+  <table class="table table-hover" id="TableForMenu">
     <thead>
       <tr>
         <th>Event Name</th>
         <th>Status</th>
         <th>Orders</th>
+        <th>Reset (admin)</th>
         <th>Remove (admin)</th>
         <th>Status Change (admin)</th>
       </tr>
     </thead>
-
     <tbody id="MenuTableID">
-  {{#if GroupInfo}}
-      {{#each GroupInfo}}
-        <tr>
-          <td>{{eventName}}</td>
-          <td>{{status}}</td>
-          {{#if UserInEvent}}
-            <td><button type="button" id="AddOrderToEventID" idEvent="{{_id}}" idGroup="{{GroupId._id}}" class="btn btn-default btn-xs">Order</button></td>
-            {{#if UserIsAdminEvent}}
-              <td><button type="button" id="RemoveEventID" idEvent="{{_id}}" class="btn btn-default btn-xs">Remove</button></td>
-              <td><button type="button" id="StatusEventID" status="{{status}}" idGroup="{{GroupId._id}}" idEvent="{{_id}}" class="btn btn-default btn-xs">Next Status</button></td>
+      {{#if GroupInfo}}
+        {{#each GroupInfo}}
+          <tr>
+            <td>{{eventName}}</td>
+            <td>{{status}}</td>
+            {{#if UserInEvent}}
+              <td><button type="button" id="AddOrderToEventID" idEvent="{{_id}}" idGroup="{{GroupId._id}}" class="btn btn-default btn-xs">Order</button></td>
+              {{#if UserIsAdminEvent}}
+                <td><button type="button" id="ResetEventID" idEvent="{{_id}}" class="btn btn-default btn-xs">Reset</button></td>
+                <td><button type="button" id="RemoveEventID" idEvent="{{_id}}" class="btn btn-default btn-xs">Remove</button></td>
+                <td><button type="button" id="StatusEventID" status="{{status}}" idGroup="{{GroupId._id}}" idEvent="{{_id}}" class="btn btn-default btn-xs">Next Status</button></td>
+              {{else}}
+                <td>For admin</td>
+                <td>For admin</td>
+              {{/if}}
             {{else}}
-              <td>For admin</td>
-              <td>For admin</td>
+              <td><button type="button" id="JoinToEventID" idEvent="{{_id}}" class="btn btn-default btn-xs">Join to Event</button></td>
             {{/if}}
-          {{else}}
-            <td><button type="button" id="JoinToEventID" idEvent="{{_id}}" class="btn btn-default btn-xs">Join to Event</button></td>
-          {{/if}}
-        </tr> 
+          </tr> 
         {{/each}}
-    {{/if}}
+      {{/if}}
     </tbody>
   </table> 
 </template>

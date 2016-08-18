@@ -7,12 +7,12 @@ import '../../api/errors/methods.js';
 
 Template.CreateGroup.helpers({
 	AfterLoad: function() {
-    	return {
-        	finished: function(index, fileInfo, context) {
-				    Session.set("Image", fileInfo.url);
-        	}
-    	}
-  	},
+   	return {
+     	finished: function(index, fileInfo, context) {
+		    Session.set("Image", fileInfo.url);
+     	}
+   	}
+  },
   ImageGroup: function(){
     let url = Session.get('Image');
     if (url){
@@ -25,13 +25,13 @@ Template.CreateGroup.helpers({
 
 Template.CreateGroup.events({
 	'click button ': function(e, i) {
-  		event.preventDefault();
-  		let [name, image] = [GroupNameID.value, Session.get('Image')];
-  		if(name && image){
-  			Meteor.call('CreateGroup', name, image);
-  			FlowRouter.go('/');
-  		}else{
-  			Meteor.Errors.alertError('groupError');
-  		}
+  	event.preventDefault();
+  	let [name, image] = [GroupNameID.value, Session.get('Image')];
+  	if(name && image){
+  		Meteor.call('CreateGroup', name, image);
+  		FlowRouter.go('/');
+  	}else{
+  		Meteor.Errors.alertError('groupError');
   	}
+  }
 });

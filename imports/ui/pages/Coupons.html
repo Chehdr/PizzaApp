@@ -18,8 +18,7 @@
     <label for="AddCouponID">Add</label>
     <button type="button" id="AddCouponID" class="btn btn-default btn-sm">Add Coupon</button>
   </div>
-
-    <table class="table table-hover" id="TableForMenu">
+  <table class="table table-hover" id="TableForMenu">
     <thead>
       <tr>
         <th>Name Item</th>
@@ -28,14 +27,14 @@
       </tr>
     </thead>
     <tbody id="MenuTableID">
-    {{#if Coupon.coupons}}
-      {{#each Coupon.coupons}}
-        <tr>
-          <td>{{name}}</td>
-          <td>{{count}}</td>
-          <td><button type="button" id="RemoveCouponID" name="{{name}}" class="btn btn-default btn-xs">Remove</button></td>
-        </tr> 
-         {{/each}}
+      {{#if Coupon.coupons}}
+        {{#each Coupon.coupons}}
+          <tr>
+            <td>{{name}}</td>
+            <td>{{count}}</td>
+            <td><button type="button" id="RemoveCouponID" name="{{name}}" class="btn btn-default btn-xs">Remove</button></td>
+          </tr> 
+        {{/each}}
       {{/if}}  
     </tbody>
   </table> 

@@ -1,6 +1,6 @@
 <template name="AddItemsToOrder">
   <form role="form">
-        <table class="table table-hover">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th>Select Item</th>
@@ -10,16 +10,16 @@
         </tr>
       </thead>
       <tbody id="MenuTableID">  
-    {{#if Order.menu.[0]}}
-      {{#each Order.menu}}
-        {{> MenuOrder}}
-      {{/each}}
-    {{/if}}        
-    </tbody>
+        {{#if Order.menu.[0]}}
+          {{#each Order.menu}}
+            {{> MenuOrder}}
+          {{/each}}
+        {{/if}}        
+      </tbody>
     </table> 
     {{#if ifOrdered}}
       <button type="submit" class="btn btn-default btn-sm">Confirm order</button>
-      {{else}}
+    {{else}}
       <h4>Order sent</h4>
     {{/if}}  
   </form>
